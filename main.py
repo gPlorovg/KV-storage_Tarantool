@@ -1,3 +1,4 @@
+import asyncio
 import asynctnt
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
@@ -37,17 +38,18 @@ class ReadData(BaseModel):
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-db = asynctnt.Connection(host="127.0.0.1", port=3301, username="api", password="xxx")
+users_db = asynctnt.Connection(host="127.0.0.1", port=3349, username="api", password="xxx")
+data_db = asynctnt.Connection(host="127.0.0.1", port=3330, username="api", password="xxx")
 
 app = FastAPI()
 
 
-def add_user(login: str, password: str):
+async def add_user(login: str, password: str):
     space_name = 'users'
     tuple_data = (None, login, pwd_context.hash(password))
 
-    result = await db.call("crud.insert", [space_name, tuple_data])
-    if result:
+    result = await users_db.call("crud.insert", [space_name, tuple_data])
+    if result[0]:
         print(result[0]["rows"][0])
     else:
         print(result[1])
@@ -55,13 +57,15 @@ def add_user(login: str, password: str):
 
 @app.on_event("startup")
 async def startup():
-    await db.connect()
-    add_user("admin", "presale")
+    await users_db.connect()
+    await data_db.connect()
+    await add_user("admin", "presale")
 
 
 @app.on_event("shutdown")
 async def shutdown():
-    await db.disconnect()
+    await users_db.disconnect()
+    await data_db.disconnect()
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -71,12 +75,16 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
 async def get_user_from_db(login: str) -> UserInDB or None:
     space_name = 'users'
 
-    result = await db.call("crud.get", [space_name, [login]])
-    if result:
-        print(result[0]["rows"][0])
+    result = await users_db.call("crud.get", [space_name, [login]])
+    print(result)
+    if result[0]:
+        if result[0]["rows"]:
+            print(result[0]["rows"][0])
+        else:
+            return None
     else:
-        print(result[1])
-    # user_data = await db.select("users", [login])
+        return None
+    # user_data = await users_db.select("users", [login])
     user_data = {"login": result[0]["rows"][0][1], "password": result[0]["rows"][0][2]}
 
     if user_data:
@@ -107,9 +115,9 @@ async def write_token_to_db(login: str, token: str):
     space_name = 'tokens'
     tuple_data = (None, login, token)
 
-    result = await db.call("crud.insert", [space_name, tuple_data])
+    result = await users_db.call("crud.insert", [space_name, tuple_data])
 
-    if result:
+    if result[0]:
         print(result[0]["rows"][0])
     else:
         print(result[1])
@@ -154,10 +162,28 @@ async def get_current_user(token: Token) -> User:
 
 
 @app.post("/api/write")
-def write_to_db(data: WriteData, current_user: User = Depends(get_current_user)):
-    return {"user": current_user, "data": data}
+async def write_to_db(data: WriteData, current_user: User = Depends(get_current_user)):
+    space_name = 'data'
+
+    try:
+        operations = [(None, k, v) for k, v in data.to_write.items()]
+        await asyncio.gather(
+            *[data_db.call("crud.insert", [space_name, operation]) for operation in operations]
+        )
+        return {"message": "Items inserted successfully", "count": len(operations)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/api/read")
-def read_from_db(data: ReadData, current_user: User = Depends(get_current_user)):
-    return {"user": current_user, "data": data}
+async def read_from_db(data: ReadData, current_user: User = Depends(get_current_user)):
+    space_name = 'data'
+    try:
+        results = await asyncio.gather(
+            *[data_db.call("crud.get", [space_name, key]) for key in data.keys]
+        )
+        items = {row[1]: row[2] for row in results[0]["rows"]}
+        return {"items": items}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+

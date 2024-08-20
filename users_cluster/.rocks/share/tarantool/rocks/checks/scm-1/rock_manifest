@@ -1,0 +1,20 @@
+rock_manifest = {
+   ["checks-scm-1.rockspec"] = "54ee902bddab897682430f54d212d8ef",
+   doc = {
+      ["CHANGELOG.md"] = "faef39db1bac4b760ec0f706d829970d",
+      LICENSE = "08b7f1ae993a76919eb7ff9c7e11a15f",
+      ["README.md"] = "34c51ff9a7350ff38aee78e773a4d1e0"
+   },
+   lua = {
+      checks = {
+         ["version.lua"] = "bfc63b0c432ebc96495b09f52cea6756"
+      },
+      ["checks.lua"] = "8872ce38f59d4f2d58ffa7acfdb02c68",
+      override = {
+         checks = {
+            ["version.lua"] = "bfc63b0c432ebc96495b09f52cea6756"
+         },
+         ["checks.lua"] = "8872ce38f59d4f2d58ffa7acfdb02c68"
+      }
+   }
+}

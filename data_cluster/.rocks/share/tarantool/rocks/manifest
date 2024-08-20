@@ -1,0 +1,569 @@
+commands = {}
+dependencies = {
+   checks = {
+      ["scm-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   crud = {
+      ["1.5.2-1"] = {
+         {
+            constraints = {
+               {
+                  op = "~>",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         },
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     3, 1, 0, revision = 1, string = "3.1.0-1"
+                  }
+               }
+            },
+            name = "checks"
+         },
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     2, 2, 1, revision = 1, string = "2.2.1-1"
+                  }
+               }
+            },
+            name = "errors"
+         },
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 1, 18, revision = 1, string = "0.1.18-1"
+                  }
+               }
+            },
+            name = "vshard"
+         }
+      }
+   },
+   errors = {
+      ["scm-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   task = {
+      ["scm-1"] = {
+         {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     0, 1, 27, string = "0.1.27"
+                  }
+               }
+            },
+            name = "vshard"
+         },
+         {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     1, 5, 2, string = "1.5.2"
+                  }
+               }
+            },
+            name = "crud"
+         }
+      }
+   },
+   vshard = {
+      ["0.1.27-1"] = {
+         {
+            constraints = {
+               {
+                  op = "~>",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   }
+}
+modules = {
+   ["cartridge.roles.crud-router"] = {
+      "crud/1.5.2-1"
+   },
+   ["cartridge.roles.crud-storage"] = {
+      "crud/1.5.2-1"
+   },
+   checks = {
+      "checks/scm-1"
+   },
+   ["checks.version"] = {
+      "checks/scm-1"
+   },
+   crud = {
+      "crud/1.5.2-1"
+   },
+   ["crud.borders"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.cfg"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.batching_utils"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.call"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.collations"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.compat"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.const"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.dev_checks"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.map_call_cases.base_iter"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.map_call_cases.base_postprocessor"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.map_call_cases.batch_insert_iter"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.map_call_cases.batch_postprocessor"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.map_call_cases.batch_upsert_iter"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.roles"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.schema"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.init"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.router_metadata_cache"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.sharding_func"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.sharding_key"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.sharding_metadata"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.storage_metadata_cache"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding.utils"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding_func"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.sharding_key"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.stash"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.utils"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.common.vshard_utils"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.compare.comparators"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.compare.conditions"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.compare.filters"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.compare.keydef"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.compare.plan"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.compare.type_comparators"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.count"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.delete"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.get"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.insert"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.insert_many"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.len"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.ratelimit"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.readview"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.replace"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.replace_many"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.schema"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select.compat.common"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select.compat.select"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select.compat.select_old"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select.executor"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select.iterator"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.select.merger"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.stats.init"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.stats.local_registry"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.stats.metrics_registry"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.stats.operation"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.stats.registry_utils"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.storage"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.storage_info"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.truncate"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.update"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.upsert"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.upsert_many"] = {
+      "crud/1.5.2-1"
+   },
+   ["crud.version"] = {
+      "crud/1.5.2-1"
+   },
+   errors = {
+      "errors/scm-1"
+   },
+   ["errors.deprecate"] = {
+      "errors/scm-1"
+   },
+   ["errors.version"] = {
+      "errors/scm-1"
+   },
+   ["override.checks"] = {
+      "checks/scm-1"
+   },
+   ["override.checks.version"] = {
+      "checks/scm-1"
+   },
+   ["roles.crud-router"] = {
+      "crud/1.5.2-1"
+   },
+   ["roles.crud-storage"] = {
+      "crud/1.5.2-1"
+   },
+   ["vshard.cfg"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.consts"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.error"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.hash"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.heap"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.init"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.registry"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.replicaset"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.rlist"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.router.init"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.service_info"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.export_log"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.exports"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.init"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.ref"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.reload_evolution"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.sched"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.storage.schema"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.util"] = {
+      "vshard/0.1.27-1"
+   },
+   ["vshard.version"] = {
+      "vshard/0.1.27-1"
+   }
+}
+repository = {
+   checks = {
+      ["scm-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               checks = "checks.lua",
+               ["checks.version"] = "checks/version.lua",
+               ["override.checks"] = "override/checks.lua",
+               ["override.checks.version"] = "override/checks/version.lua"
+            }
+         }
+      }
+   },
+   crud = {
+      ["1.5.2-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               checks = "scm-1",
+               errors = "scm-1",
+               vshard = "0.1.27-1"
+            },
+            modules = {
+               ["cartridge.roles.crud-router"] = "cartridge/roles/crud-router.lua",
+               ["cartridge.roles.crud-storage"] = "cartridge/roles/crud-storage.lua",
+               crud = "crud.lua",
+               ["crud.borders"] = "crud/borders.lua",
+               ["crud.cfg"] = "crud/cfg.lua",
+               ["crud.common.batching_utils"] = "crud/common/batching_utils.lua",
+               ["crud.common.call"] = "crud/common/call.lua",
+               ["crud.common.collations"] = "crud/common/collations.lua",
+               ["crud.common.compat"] = "crud/common/compat.lua",
+               ["crud.common.const"] = "crud/common/const.lua",
+               ["crud.common.dev_checks"] = "crud/common/dev_checks.lua",
+               ["crud.common.map_call_cases.base_iter"] = "crud/common/map_call_cases/base_iter.lua",
+               ["crud.common.map_call_cases.base_postprocessor"] = "crud/common/map_call_cases/base_postprocessor.lua",
+               ["crud.common.map_call_cases.batch_insert_iter"] = "crud/common/map_call_cases/batch_insert_iter.lua",
+               ["crud.common.map_call_cases.batch_postprocessor"] = "crud/common/map_call_cases/batch_postprocessor.lua",
+               ["crud.common.map_call_cases.batch_upsert_iter"] = "crud/common/map_call_cases/batch_upsert_iter.lua",
+               ["crud.common.roles"] = "crud/common/roles.lua",
+               ["crud.common.schema"] = "crud/common/schema.lua",
+               ["crud.common.sharding.init"] = "crud/common/sharding/init.lua",
+               ["crud.common.sharding.router_metadata_cache"] = "crud/common/sharding/router_metadata_cache.lua",
+               ["crud.common.sharding.sharding_func"] = "crud/common/sharding/sharding_func.lua",
+               ["crud.common.sharding.sharding_key"] = "crud/common/sharding/sharding_key.lua",
+               ["crud.common.sharding.sharding_metadata"] = "crud/common/sharding/sharding_metadata.lua",
+               ["crud.common.sharding.storage_metadata_cache"] = "crud/common/sharding/storage_metadata_cache.lua",
+               ["crud.common.sharding.utils"] = "crud/common/sharding/utils.lua",
+               ["crud.common.sharding_func"] = "crud/common/sharding_func.lua",
+               ["crud.common.sharding_key"] = "crud/common/sharding_key.lua",
+               ["crud.common.stash"] = "crud/common/stash.lua",
+               ["crud.common.utils"] = "crud/common/utils.lua",
+               ["crud.common.vshard_utils"] = "crud/common/vshard_utils.lua",
+               ["crud.compare.comparators"] = "crud/compare/comparators.lua",
+               ["crud.compare.conditions"] = "crud/compare/conditions.lua",
+               ["crud.compare.filters"] = "crud/compare/filters.lua",
+               ["crud.compare.keydef"] = "crud/compare/keydef.lua",
+               ["crud.compare.plan"] = "crud/compare/plan.lua",
+               ["crud.compare.type_comparators"] = "crud/compare/type_comparators.lua",
+               ["crud.count"] = "crud/count.lua",
+               ["crud.delete"] = "crud/delete.lua",
+               ["crud.get"] = "crud/get.lua",
+               ["crud.insert"] = "crud/insert.lua",
+               ["crud.insert_many"] = "crud/insert_many.lua",
+               ["crud.len"] = "crud/len.lua",
+               ["crud.ratelimit"] = "crud/ratelimit.lua",
+               ["crud.readview"] = "crud/readview.lua",
+               ["crud.replace"] = "crud/replace.lua",
+               ["crud.replace_many"] = "crud/replace_many.lua",
+               ["crud.schema"] = "crud/schema.lua",
+               ["crud.select"] = "crud/select.lua",
+               ["crud.select.compat.common"] = "crud/select/compat/common.lua",
+               ["crud.select.compat.select"] = "crud/select/compat/select.lua",
+               ["crud.select.compat.select_old"] = "crud/select/compat/select_old.lua",
+               ["crud.select.executor"] = "crud/select/executor.lua",
+               ["crud.select.iterator"] = "crud/select/iterator.lua",
+               ["crud.select.merger"] = "crud/select/merger.lua",
+               ["crud.stats.init"] = "crud/stats/init.lua",
+               ["crud.stats.local_registry"] = "crud/stats/local_registry.lua",
+               ["crud.stats.metrics_registry"] = "crud/stats/metrics_registry.lua",
+               ["crud.stats.operation"] = "crud/stats/operation.lua",
+               ["crud.stats.registry_utils"] = "crud/stats/registry_utils.lua",
+               ["crud.storage"] = "crud/storage.lua",
+               ["crud.storage_info"] = "crud/storage_info.lua",
+               ["crud.truncate"] = "crud/truncate.lua",
+               ["crud.update"] = "crud/update.lua",
+               ["crud.upsert"] = "crud/upsert.lua",
+               ["crud.upsert_many"] = "crud/upsert_many.lua",
+               ["crud.version"] = "crud/version.lua",
+               ["roles.crud-router"] = "roles/crud-router.lua",
+               ["roles.crud-storage"] = "roles/crud-storage.lua"
+            }
+         }
+      }
+   },
+   errors = {
+      ["scm-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               errors = "errors.lua",
+               ["errors.deprecate"] = "errors/deprecate.lua",
+               ["errors.version"] = "errors/version.lua"
+            }
+         }
+      }
+   },
+   task = {
+      ["scm-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               checks = "scm-1",
+               crud = "1.5.2-1",
+               errors = "scm-1",
+               vshard = "0.1.27-1"
+            },
+            modules = {}
+         }
+      }
+   },
+   vshard = {
+      ["0.1.27-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["vshard.cfg"] = "vshard/cfg.lua",
+               ["vshard.consts"] = "vshard/consts.lua",
+               ["vshard.error"] = "vshard/error.lua",
+               ["vshard.hash"] = "vshard/hash.lua",
+               ["vshard.heap"] = "vshard/heap.lua",
+               ["vshard.init"] = "vshard/init.lua",
+               ["vshard.registry"] = "vshard/registry.lua",
+               ["vshard.replicaset"] = "vshard/replicaset.lua",
+               ["vshard.rlist"] = "vshard/rlist.lua",
+               ["vshard.router.init"] = "vshard/router/init.lua",
+               ["vshard.service_info"] = "vshard/service_info.lua",
+               ["vshard.storage.export_log"] = "vshard/storage/export_log.lua",
+               ["vshard.storage.exports"] = "vshard/storage/exports.lua",
+               ["vshard.storage.init"] = "vshard/storage/init.lua",
+               ["vshard.storage.ref"] = "vshard/storage/ref.lua",
+               ["vshard.storage.reload_evolution"] = "vshard/storage/reload_evolution.lua",
+               ["vshard.storage.sched"] = "vshard/storage/sched.lua",
+               ["vshard.storage.schema"] = "vshard/storage/schema.lua",
+               ["vshard.util"] = "vshard/util.lua",
+               ["vshard.version"] = "vshard/version.lua"
+            }
+         }
+      }
+   }
+}

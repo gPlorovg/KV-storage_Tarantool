@@ -1,14 +1,20 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 WORKDIR /app
 
 RUN apt-get update && apt upgrade -y
+# fix tarantool install problem
+RUN apt-get install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/Europe/Moscow /etc/localtime \
+    && dpkg-reconfigure --frontend noninteractive tzdata
 
-RUN apt-get -y install tarantool
+RUN apt-get install -y curl make cmake
 
-RUN curl -L https://tarantool.io/release/3/installer.sh | bash
+RUN curl -L https://tarantool.io/release/3/installer.sh | bash \
+    && apt-get update \
+    && apt-get install -y tarantool \
+    && apt-get install -y tt
 
-RUN apt-get -y install tt
 RUN tt init
 
 COPY ./instances.enabled ./instances.enabled
@@ -24,5 +30,4 @@ RUN \q
 
 RUN tt connect data_cluster:data_router-a-001
 RUN vshard.router.bootstrap()
-RUN \q 
-
+RUN \q

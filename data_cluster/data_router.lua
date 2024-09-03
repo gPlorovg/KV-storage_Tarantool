@@ -1,1 +1,0 @@
-local vshard = require('vshard')

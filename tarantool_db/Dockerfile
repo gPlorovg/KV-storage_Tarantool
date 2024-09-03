@@ -29,4 +29,4 @@ RUN tt build data_cluster
 
 EXPOSE 3049
 
-CMD ["tt", "start"]
+CMD ["sh", "-c", "tt start; while true; do sleep 1; done"]

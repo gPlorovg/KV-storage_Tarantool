@@ -13,6 +13,8 @@ RUN apt-get install -y curl make cmake
 RUN curl -L https://tarantool.io/release/3/installer.sh | bash \
     && apt-get update \
     && apt-get install -y tarantool \
+    # fix tt rocks no LUA headers problem
+    && apt-get install -y tarantool-dev \
     && apt-get install -y tt
 
 RUN tt init
